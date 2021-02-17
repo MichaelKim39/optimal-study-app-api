@@ -1,8 +1,16 @@
 const express = require("express");
+const { connectMongoose } = require("./database");
 
 const port = parseInt(process.env.PORT, 10) || 3001;
 const app = express();
 
-app.listen(port, (error) => {
-	error ? console.log(error) : console.log(`Server ready on port ${port}`);
-});
+const initialiseServer = async () => {
+	await connectMongoose();
+	const subjectsRoutes = require("./routes/subjects");
+	app.use("/api/v1", subjectsRoutes);
+	app.listen(port, (error) => {
+		console.log(error || `Server ready on port ${port}`);
+	});
+};
+
+initialiseServer();
