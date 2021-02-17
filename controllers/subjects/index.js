@@ -5,3 +5,14 @@ exports.getSubjects = async (req, res) => {
 	const subjects = await Subject.find({});
 	return res.json(subjects);
 };
+
+exports.getSubject = async (req, res) => {
+	try {
+		const subject = await Subject.findById(req.params.id);
+		console.log(subject);
+		return res.json({ message: "GET subject working" });
+	} catch (error) {
+		console.log(error);
+		return res.status(422).send(error.message);
+	}
+};
