@@ -1,9 +1,15 @@
 const express = require("express");
-const { getSubjects, getSubject } = require("../../controllers/subjects");
+const {
+	getSubjects,
+	getSubject,
+	addSubject,
+} = require("../../controllers/subjects");
 
 const router = express.Router();
 
-router.get("/subjects", getSubjects);
-router.get("/subjects/:id", getSubject);
+router.get("", getSubjects);
+router.get("/:id", getSubject);
+
+router.post("", addSubject);
 
 module.exports = router;

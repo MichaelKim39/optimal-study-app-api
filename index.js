@@ -7,7 +7,7 @@ const app = express();
 const initialiseServer = async () => {
 	await connectMongoose();
 	const subjectsRoutes = require("./routes/subjects");
-	app.use("/api/v1", subjectsRoutes);
+	app.use("/api/v1/subjects", subjectsRoutes);
 	app.listen(port, (error) => {
 		console.log(error || `Server ready on port ${port}`);
 	});

@@ -15,3 +15,12 @@ exports.getSubject = async (req, res) => {
 		return res.status(422).send(error.message);
 	}
 };
+
+exports.addSubject = async (req, res) => {
+	try {
+		return res.json({ message: "POST subject working" });
+	} catch (error) {
+		console.log(error);
+		return res.status(422).send(error.message);
+	}
+};
