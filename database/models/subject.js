@@ -8,6 +8,7 @@ const subjectSchema = new Schema({
 	topics: [
 		{
 			title: String,
+			image: String,
 		},
 	],
 	creationDate: { type: Date, default: Date.now },
