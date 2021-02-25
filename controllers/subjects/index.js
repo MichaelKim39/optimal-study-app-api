@@ -18,7 +18,11 @@ exports.getSubject = async (req, res) => {
 
 exports.addSubject = async (req, res) => {
 	try {
-		return res.json({ message: "POST subject working" });
+		const subjectJSON = req.body;
+		const subject = new Subject(subjectJSON);
+		console.log(subject);
+		const addedSubject = await subject.save();
+		return res.json({ data: addedSubject, message: "POST subject working" });
 	} catch (error) {
 		console.log(error);
 		return res.status(422).send(error.message);
