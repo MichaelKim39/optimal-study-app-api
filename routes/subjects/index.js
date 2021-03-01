@@ -9,7 +9,7 @@ const { verifyJWT } = require("../../controllers/auth");
 const router = express.Router();
 
 router.get("", getSubjects);
-router.get("/:id", getSubject);
+router.get("/:subjectId", getSubject);
 
 router.post("", verifyJWT, addSubject);
 

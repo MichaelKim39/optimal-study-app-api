@@ -8,10 +8,12 @@ exports.getSubjects = async (req, res) => {
 
 exports.getSubject = async (req, res) => {
 	try {
-		const subject = await Subject.findById(req.params.id);
+		const subject = await Subject.findById(req.params.subjectId);
+		console.log("FOUND SUBJECT WITH ID: ", req.params);
 		return res.json({ data: subject, message: "GET subject working" });
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
+		console.log("COULD NOT FIND SUBJECT WITH ID: ", req.params);
 		return res.status(422).send(error.message);
 	}
 };
