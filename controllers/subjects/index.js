@@ -22,9 +22,30 @@ exports.addSubject = async (req, res) => {
 	try {
 		const subjectJSON = req.body;
 		const subject = new Subject(subjectJSON);
-		console.log(subject);
+		const userId = req.user.sub;
+		subject.userId = userId;
+
 		const addedSubject = await subject.save();
-		return res.json({ data: addedSubject, message: "POST subject working" });
+		return res.json({ data: addedSubject, message: "ADD subject working" });
+	} catch (error) {
+		console.log(error);
+		return res.status(422).send(error.message);
+	}
+};
+
+exports.editSubject = async (req, res) => {
+	try {
+		const {
+			body: newSubject,
+			params: { subjectId },
+		} = req;
+
+		const editedSubject = await Subject.findOneAndUpdate(
+			{ _id: subjectId },
+			newSubject,
+			{ new: true, runValidators: true }
+		);
+		return res.json(editedSubject);
 	} catch (error) {
 		console.log(error);
 		return res.status(422).send(error.message);
