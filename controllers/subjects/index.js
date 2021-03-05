@@ -9,7 +9,7 @@ exports.getSubjects = async (req, res) => {
 exports.getSubject = async (req, res) => {
 	try {
 		const subject = await Subject.findById(req.params.subjectId);
-		console.log("FOUND SUBJECT WITH ID: ", req.params);
+		// console.log("FOUND SUBJECT WITH ID: ", req.params);
 		return res.json({ data: subject, message: "GET subject working" });
 	} catch (error) {
 		// console.log(error);
@@ -45,9 +45,19 @@ exports.editSubject = async (req, res) => {
 			newSubject,
 			{ new: true, runValidators: true }
 		);
+
+		// console.log("EDIT SUBJECT SUCCESS WITH REQ: ", newSubject);
 		return res.json(editedSubject);
 	} catch (error) {
-		console.log(error);
+		console.log("EDIT SUBJECT FAILED WITH ERROR: ", error);
 		return res.status(422).send(error.message);
 	}
+};
+
+exports.deleteSubject = async (req, res) => {
+	const deletedSubject = await Subject.findOneAndDelete({
+		_id: req.params.subjectId,
+	});
+	// console.log("Deleted subject: ", deletedSubject);
+	return res.json({ _id: deletedSubject._id });
 };
