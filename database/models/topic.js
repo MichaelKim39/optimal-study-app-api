@@ -3,21 +3,23 @@ const { getRandomImage } = require("../../utils/imageHandlers");
 
 const Schema = mongoose.Schema;
 
-const subjectSchema = new Schema({
+const topicSchema = new Schema({
 	title: { type: String, required: true, maxLength: 100 },
 	description: { type: String },
 	image: {
 		type: String,
 		default: getRandomImage(),
 	},
-	topics: [
+	notes: { type: String },
+	cards: [
 		{
-			title: { type: String },
-			topicId: { type: mongoose.Types.ObjectId },
+			question: { type: String },
+			answer: { type: String },
 		},
 	],
 	creationDate: { type: Date, default: Date.now },
+	isPublic: { type: Boolean, default: true },
 	userId: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Subject", subjectSchema);
+module.exports = mongoose.model("Topic", topicSchema);

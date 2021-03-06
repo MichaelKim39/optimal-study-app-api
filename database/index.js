@@ -3,6 +3,7 @@ const config = require("../config/dev");
 
 // Register created models
 require("./models/subject");
+require("./models/topic");
 
 // Named export of connection function
 exports.connectMongoose = async () => {
