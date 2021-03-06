@@ -6,7 +6,12 @@ const {
 	editSubject,
 	deleteSubject,
 } = require("../../controllers/subjects");
-const { addTopic, getTopics } = require("../../controllers/topics");
+const {
+	addTopic,
+	getTopics,
+	editTopic,
+	deleteTopic,
+} = require("../../controllers/topics");
 
 const { verifyJWT } = require("../../controllers/auth");
 
@@ -18,7 +23,9 @@ router.post("", verifyJWT, addSubject);
 router.patch("/:subjectId", verifyJWT, editSubject);
 router.delete("/:subjectId", verifyJWT, deleteSubject);
 
-router.post("/:subjectId/topic", verifyJWT, addTopic);
 router.get("/:subjectId/topics", getTopics);
+router.post("/:subjectId/topics", addTopic);
+router.patch("/:subjectId/:topicId", editTopic);
+router.delete("/:subjectId/:topicId", deleteTopic);
 
 module.exports = router;
