@@ -10,7 +10,7 @@ const topicSchema = new Schema({
 		type: String,
 		default: getRandomImage(),
 	},
-	notes: { type: String },
+	notes: { type: String, default: "" },
 	cards: [
 		{
 			question: { type: String },

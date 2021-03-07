@@ -98,3 +98,33 @@ exports.deleteTopic = async (req, res) => {
 		return res.status(422).send(error.message);
 	}
 };
+
+exports.editNotes = async (req, res) => {
+	try {
+		const {
+			body,
+			params: { subjectId, topicId },
+		} = req;
+
+		const editedSubject = await Subject.findOneAndUpdate(
+			{ _id: subjectId },
+			{
+				$set: {
+					"topics.$[topic].notes": body.markdown,
+					"topics.$[topic]._id": topicId,
+				},
+			},
+			{
+				arrayFilters: [{ "topic._id": topicId }],
+				new: true,
+				returnOriginal: false,
+				returnNewDocument: true,
+			}
+		);
+
+		return res.json("Edit Notes working");
+	} catch (error) {
+		console.log("EDIT TOPIC NOTES FAILED WITH ERROR: ", error);
+		return res.status(422).send(error.message);
+	}
+};

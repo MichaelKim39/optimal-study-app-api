@@ -12,6 +12,7 @@ const {
 	getTopic,
 	editTopic,
 	deleteTopic,
+	editNotes,
 } = require("../../controllers/topics");
 
 const { verifyJWT } = require("../../controllers/auth");
@@ -29,5 +30,6 @@ router.get("/:subjectId/:topicId", getTopic);
 router.post("/:subjectId/topics", addTopic);
 router.patch("/:subjectId/:topicId", editTopic);
 router.delete("/:subjectId/:topicId", deleteTopic);
+router.patch("/:subjectId/:topicId/notes", editNotes);
 
 module.exports = router;
