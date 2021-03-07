@@ -12,6 +12,18 @@ exports.getTopics = async (req, res) => {
 	}
 };
 
+exports.getTopic = async (req, res) => {
+	const { subjectId, topicId } = req.params;
+	try {
+		const subject = await Subject.findById(subjectId);
+		const topic = subject.topics.find((t) => t._id == topicId);
+		return res.json(topic);
+	} catch (error) {
+		console.log("COULD NOT FIND TOPIC WITH ID: ", topicId);
+		return res.status(422).send(error.message);
+	}
+};
+
 exports.addTopic = async (req, res) => {
 	try {
 		const {

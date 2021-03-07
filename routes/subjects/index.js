@@ -9,6 +9,7 @@ const {
 const {
 	addTopic,
 	getTopics,
+	getTopic,
 	editTopic,
 	deleteTopic,
 } = require("../../controllers/topics");
@@ -24,6 +25,7 @@ router.patch("/:subjectId", verifyJWT, editSubject);
 router.delete("/:subjectId", verifyJWT, deleteSubject);
 
 router.get("/:subjectId/topics", getTopics);
+router.get("/:subjectId/:topicId", getTopic);
 router.post("/:subjectId/topics", addTopic);
 router.patch("/:subjectId/:topicId", editTopic);
 router.delete("/:subjectId/:topicId", deleteTopic);
