@@ -201,7 +201,6 @@ exports.getCard = async (req, res) => {
 		const subject = await Subject.findById(subjectId);
 		const topic = subject.topics.find((t) => t._id == topicId);
 		const card = topic.cards.find((c) => c._id == cardId);
-		// console.log("FOUND CARD: ", card);
 		return res.json(card);
 	} catch (error) {
 		console.log("COULD NOT FIND CARD WITH ID: ", cardId);
