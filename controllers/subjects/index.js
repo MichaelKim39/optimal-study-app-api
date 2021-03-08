@@ -61,3 +61,20 @@ exports.deleteSubject = async (req, res) => {
 	// console.log("Deleted subject: ", deletedSubject);
 	return res.json({ _id: deletedSubject._id });
 };
+
+exports.searchSubjects = async (req, res) => {
+	const { query } = req.params;
+	try {
+		const searchResults = await Subject.find({
+			$text: {
+				$search: query,
+				$caseSensitive: false,
+				$diacriticSensitive: false,
+			},
+		});
+		return res.json(searchResults);
+	} catch (error) {
+		console.log("COULD NOT GET SEARCH RESULTS FOR QUERY: ", query);
+		return res.status(422).send(error.message);
+	}
+};

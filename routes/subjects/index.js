@@ -5,6 +5,7 @@ const {
 	addSubject,
 	editSubject,
 	deleteSubject,
+	searchSubjects,
 } = require("../../controllers/subjects");
 const {
 	addTopic,

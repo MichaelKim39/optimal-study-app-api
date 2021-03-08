@@ -36,4 +36,6 @@ const subjectSchema = new Schema({
 	userId: { type: String, required: true },
 });
 
+subjectSchema.index({ title: "text", description: "text" });
+
 module.exports = mongoose.model("Subject", subjectSchema);

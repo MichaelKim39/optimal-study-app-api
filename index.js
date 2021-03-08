@@ -11,7 +11,9 @@ const initialiseServer = async () => {
 	app.use(bodyParser.json());
 
 	const subjectsRoutes = require("./routes/subjects");
+	const searchRoutes = require("./routes/search");
 	app.use("/api/v1/subjects", subjectsRoutes);
+	app.use("/api/v1/search", searchRoutes);
 	app.listen(port, (error) => {
 		console.log(error || `Server ready on port ${port}`);
 	});

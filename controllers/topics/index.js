@@ -223,13 +223,6 @@ exports.deleteCard = async (req, res) => {
 		params: { subjectId, topicId },
 	} = req;
 
-	// console.log(
-	// 	"(SERVER) DELETING CARD WITH INPUTS: ",
-	// 	subjectId,
-	// 	topicId,
-	// 	cardId
-	// );
-
 	try {
 		const result = await Subject.updateOne(
 			{ _id: subjectId },
