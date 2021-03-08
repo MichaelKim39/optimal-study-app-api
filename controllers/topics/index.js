@@ -128,3 +128,83 @@ exports.editNotes = async (req, res) => {
 		return res.status(422).send(error.message);
 	}
 };
+
+exports.addCard = async (req, res) => {
+	try {
+		const {
+			body: newCard,
+			params: { subjectId, topicId },
+		} = req;
+
+		const editedSubject = await Subject.findOneAndUpdate(
+			{ _id: subjectId },
+			{
+				$push: {
+					"topics.$[topic].cards": newCard,
+				},
+				$set: {
+					"topics.$[topic]._id": topicId,
+				},
+			},
+			{
+				arrayFilters: [{ "topic._id": topicId }],
+				new: true,
+				returnOriginal: false,
+				returnNewDocument: true,
+			}
+		);
+
+		return res.json("Add card working");
+	} catch (error) {
+		console.log("ADD TOPIC CARD FAILED WITH ERROR: ", error);
+		return res.status(422).send(error.message);
+	}
+};
+
+exports.editCard = async (req, res) => {
+	try {
+		const {
+			body: { cardId, newCard },
+			params: { subjectId, topicId },
+		} = req;
+
+		const editedSubject = await Subject.findOneAndUpdate(
+			{ _id: subjectId },
+			{
+				$set: {
+					"topics.$[topic].cards.$[card]": newCard,
+					"topics.$[topic]._id": topicId,
+				},
+			},
+			{
+				arrayFilters: [{ "topic._id": topicId }, { "card._id": cardId }],
+				new: true,
+				returnOriginal: false,
+				returnNewDocument: true,
+			}
+		);
+
+		return res.json("Edit card working");
+	} catch (error) {
+		console.log("EDIT TOPIC CARD FAILED WITH ERROR: ", error);
+		return res.status(422).send(error.message);
+	}
+};
+
+exports.getCard = async (req, res) => {
+	const {
+		body: { cardId },
+		params: { subjectId, topicId },
+	} = req;
+
+	try {
+		const subject = await Subject.findById(subjectId);
+		const topic = subject.topics.find((t) => t._id == topicId);
+		const card = topic.cards.find((c) => c._id == cardId);
+		// console.log("FOUND CARD: ", card);
+		return res.json(card);
+	} catch (error) {
+		console.log("COULD NOT FIND CARD WITH ID: ", cardId);
+		return res.status(422).send(error.message);
+	}
+};

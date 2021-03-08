@@ -10,6 +10,22 @@ const testTopics = [
 				question: "Card 1 question",
 				answer: "Card 1 answer",
 			},
+			{
+				question: "Card 2 question",
+				answer: "Card 2 answer",
+			},
+			{
+				question: "Card 3 question",
+				answer: "Card 3 answer",
+			},
+			{
+				question: "Card 4 question",
+				answer: "Card 4 answer",
+			},
+			{
+				question: "Card 5 question",
+				answer: "Card 5 answer",
+			},
 		],
 	},
 	{

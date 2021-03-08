@@ -13,23 +13,35 @@ const {
 	editTopic,
 	deleteTopic,
 	editNotes,
+	addCard,
+	editCard,
+	getCard,
 } = require("../../controllers/topics");
 
 const { verifyJWT } = require("../../controllers/auth");
 
 const router = express.Router();
 
+// SUBJECTS
 router.get("", getSubjects);
 router.get("/:subjectId", getSubject);
 router.post("", verifyJWT, addSubject);
 router.patch("/:subjectId", verifyJWT, editSubject);
 router.delete("/:subjectId", verifyJWT, deleteSubject);
 
+// TOPICS
 router.get("/:subjectId/topics", getTopics);
 router.get("/:subjectId/:topicId", getTopic);
 router.post("/:subjectId/topics", addTopic);
 router.patch("/:subjectId/:topicId", editTopic);
 router.delete("/:subjectId/:topicId", deleteTopic);
+
+// NOTES
 router.patch("/:subjectId/:topicId/notes", editNotes);
+
+// CARDS
+router.post("/:subjectId/:topicId/cards", addCard);
+router.patch("/:subjectId/:topicId/cards", editCard);
+router.put("/:subjectId/:topicId/cards", getCard);
 
 module.exports = router;
