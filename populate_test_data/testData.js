@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+const { getRandomImage } = require("../utils/imageHandlers");
 
 const testTopics = [
 	{
-		title: "Topic 1",
-		description: "Topic Desc 1",
-		notes: "this is some notes...",
+		title: "Perceptron Model",
+		description: "Specific Machine Learning Model",
+		notes: "Notes for perceptron model",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 1 question",
@@ -29,9 +31,10 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 2",
-		description: "Topic Desc 2",
-		notes: "this is some notes...",
+		title: "ML Intro",
+		description: "Introductory Information",
+		notes: "Machine Learning Intro Notes",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 2 question",
@@ -40,9 +43,10 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 3",
-		description: "Topic Desc 3",
+		title: "HTML & CSS Basics",
+		description: "Learning the basic elements and how to use HTML and CSS",
 		notes: "this is some notes...",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 3 question",
@@ -51,9 +55,11 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 4",
-		description: "Topic Desc 4",
+		title: "Fair use regulations",
+		description:
+			"Learning about copyright and fair use regulations and policies",
 		notes: "this is some notes...",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 4 question",
@@ -62,9 +68,10 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 5",
-		description: "Topic Desc 5",
+		title: "Nielsen's Heuristics",
+		description: "Guidelines for optimal interface design",
 		notes: "this is some notes...",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 5 question",
@@ -73,9 +80,10 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 6",
-		description: "Topic Desc 6",
+		title: "Cognitive Walkthrough",
+		description: "A framework for evaluating the interface of applications",
 		notes: "this is some notes...",
+		image: getRandomImage(),
 		cards: [
 			{
 				question: "Card 6 question",
@@ -120,21 +128,25 @@ const testTopics = [
 
 const testSubjects = [
 	{
-		title: "Subject 1",
-		description: "Desc 1",
+		title: "Machine Learning",
+		description: "Learning to build ML models",
 		userId: "google-oauth2|103866370184806712992",
+		image: getRandomImage(),
 		topics: [testTopics[0], testTopics[1]],
 	},
 	{
-		title: "Subject 2",
-		description: "Desc 2",
+		title: "Professional Skills",
+		description:
+			"Learning foundational, professional skills for computer scientists",
 		userId: "google-oauth2|103866370184806712992",
+		image: getRandomImage(),
 		topics: [testTopics[2], testTopics[3]],
 	},
 	{
-		title: "Subject 3",
-		description: "Desc 3",
+		title: "Social Informatics",
+		description: "Learning the best practices for app UI & UX",
 		userId: "google-oauth2|103866370184806712992",
+		image: getRandomImage(),
 		topics: [testTopics[4], testTopics[5]],
 	},
 ];

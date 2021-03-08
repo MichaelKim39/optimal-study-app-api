@@ -7,7 +7,11 @@ const generateSeed = (seedLength) => {
 	return seed;
 };
 
-exports.getRandomImage = (seed = generateSeed(5)) => {
+exports.getRandomImage = (
+	seed = generateSeed(5),
+	width = 400,
+	height = 400
+) => {
 	// return `https://source.unsplash.com/300x300/daily?learning`;
-	return `https://picsum.photos/seed/${seed}/300/300`;
+	return `https://picsum.photos/seed/${seed}/${width}/${height}`;
 };

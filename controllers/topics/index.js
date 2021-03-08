@@ -191,6 +191,15 @@ exports.editCard = async (req, res) => {
 	}
 };
 
+exports.getOrDeleteCard = async (req, res) => {
+	const { reqMethod } = req.body;
+	if (reqMethod.method === "get") {
+		this.getCard(req, res);
+	} else if (reqMethod.method === "delete") {
+		this.deleteCard(req, res);
+	}
+};
+
 exports.getCard = async (req, res) => {
 	const {
 		body: { cardId },
@@ -204,6 +213,38 @@ exports.getCard = async (req, res) => {
 		return res.json(card);
 	} catch (error) {
 		console.log("COULD NOT FIND CARD WITH ID: ", cardId);
+		return res.status(422).send(error.message);
+	}
+};
+
+exports.deleteCard = async (req, res) => {
+	const {
+		body: { cardId },
+		params: { subjectId, topicId },
+	} = req;
+
+	// console.log(
+	// 	"(SERVER) DELETING CARD WITH INPUTS: ",
+	// 	subjectId,
+	// 	topicId,
+	// 	cardId
+	// );
+
+	try {
+		const result = await Subject.updateOne(
+			{ _id: subjectId },
+			{
+				$pull: {
+					"topics.$[topic].cards": { _id: cardId },
+				},
+			},
+			{
+				arrayFilters: [{ "topic._id": topicId }],
+			}
+		);
+		return res.json("Delete Card Successful");
+	} catch (error) {
+		console.log("COULD NOT DELETE CARD WITH ID: ", cardId, error);
 		return res.status(422).send(error.message);
 	}
 };
