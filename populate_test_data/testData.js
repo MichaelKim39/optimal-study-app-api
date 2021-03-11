@@ -37,8 +37,20 @@ const testTopics = [
 		image: getRandomImage(),
 		cards: [
 			{
-				question: "Card 2 question",
-				answer: "Card 2 answer",
+				question: "Card 1 question",
+				answer: "Card 1 answer",
+			},
+		],
+	},
+	{
+		title: "PCA Data analysis",
+		description: "Learning PCA with Matlab",
+		notes: "Machine Learning Notes",
+		image: getRandomImage(),
+		cards: [
+			{
+				question: "Card 1 question",
+				answer: "Card 1 answer",
 			},
 		],
 	},
@@ -58,7 +70,20 @@ const testTopics = [
 		title: "Fair use regulations",
 		description:
 			"Learning about copyright and fair use regulations and policies",
-		notes: "this is some notes...",
+		notes: "Here are some notes",
+		image: getRandomImage(),
+		cards: [
+			{
+				question: "Card 4 question",
+				answer: "Card 4 answer",
+			},
+		],
+	},
+	{
+		title: "Copyright Laws",
+		description:
+			"Learning about copyright and fair use regulations and policies",
+		notes: "Here are some notes",
 		image: getRandomImage(),
 		cards: [
 			{
@@ -82,7 +107,7 @@ const testTopics = [
 	{
 		title: "Cognitive Walkthrough",
 		description: "A framework for evaluating the interface of applications",
-		notes: "this is some notes...",
+		notes: "Here are some notes",
 		image: getRandomImage(),
 		cards: [
 			{
@@ -92,13 +117,14 @@ const testTopics = [
 		],
 	},
 	{
-		title: "Topic 7",
-		description: "Topic Desc 7",
-		notes: "this is some notes...",
+		title: "Guidelane Based Evaluation",
+		description: "A method to evaluate system interfaces",
+		notes: "Here are some notes",
+		image: getRandomImage(),
 		cards: [
 			{
-				question: "Card 7 question",
-				answer: "Card 7 answer",
+				question: "Card 6 question",
+				answer: "Card 6 answer",
 			},
 		],
 	},
@@ -132,7 +158,7 @@ const testSubjects = [
 		description: "Learning to build ML models",
 		userId: "google-oauth2|103866370184806712992",
 		image: getRandomImage(),
-		topics: [testTopics[0], testTopics[1]],
+		topics: [testTopics[0], testTopics[1], testTopics[2]],
 	},
 	{
 		title: "Professional Skills",
@@ -140,14 +166,14 @@ const testSubjects = [
 			"Learning foundational, professional skills for computer scientists",
 		userId: "google-oauth2|103866370184806712992",
 		image: getRandomImage(),
-		topics: [testTopics[2], testTopics[3]],
+		topics: [testTopics[3], testTopics[4], testTopics[5]],
 	},
 	{
 		title: "Social Informatics",
 		description: "Learning the best practices for app UI & UX",
 		userId: "google-oauth2|103866370184806712992",
 		image: getRandomImage(),
-		topics: [testTopics[4], testTopics[5]],
+		topics: [testTopics[6], testTopics[7], testTopics[8]],
 	},
 ];
 
