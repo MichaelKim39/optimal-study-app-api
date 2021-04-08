@@ -175,6 +175,27 @@ const testSubjects = [
 		image: getRandomImage(),
 		topics: [testTopics[6], testTopics[7], testTopics[8]],
 	},
+	{
+		title: "Artificial Intelligence",
+		description: "Learning the best practices for app UI & UX",
+		userId: "google-oauth2|103866370184806712992",
+		image: getRandomImage(),
+		topics: [testTopics[6]],
+	},
+	{
+		title: "Fault Tolerant Systems",
+		description: "Learning the best practices for app UI & UX",
+		userId: "google-oauth2|103866370184806712992",
+		image: getRandomImage(),
+		topics: [testTopics[6]],
+	},
+	{
+		title: "MichaelKim339's Subject",
+		description: "Test desc",
+		userId: "google-oauth2|103076374532045017991",
+		image: getRandomImage(),
+		topics: [testTopics[9]],
+	},
 ];
 
 module.exports = { testTopics, testSubjects };

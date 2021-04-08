@@ -24,7 +24,7 @@ const { verifyJWT } = require("../../controllers/auth");
 const router = express.Router();
 
 // SUBJECTS
-router.get("", getSubjects);
+router.get("", verifyJWT, getSubjects);
 router.get("/:subjectId", getSubject);
 router.post("", verifyJWT, addSubject);
 router.patch("/:subjectId", verifyJWT, editSubject);

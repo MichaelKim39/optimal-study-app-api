@@ -2,14 +2,13 @@ const mongoose = require("mongoose");
 const Subject = mongoose.model("Subject");
 
 exports.getSubjects = async (req, res) => {
-	const subjects = await Subject.find({});
+	const subjects = await Subject.find({ userId: req.user.sub });
 	return res.json(subjects);
 };
 
 exports.getSubject = async (req, res) => {
 	try {
 		const subject = await Subject.findById(req.params.subjectId);
-		// console.log("FOUND SUBJECT WITH ID: ", req.params);
 		return res.json({ data: subject, message: "GET subject working" });
 	} catch (error) {
 		// console.log(error);
