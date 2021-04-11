@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Subject = mongoose.model("Subject");
 
-exports.getSubjects = (upload) => async (req, res) => {
+exports.getSubjects = async (req, res) => {
   const subjects = await Subject.find({ userId: req.user.sub });
   return res.json(subjects);
 };

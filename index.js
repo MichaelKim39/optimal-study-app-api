@@ -50,11 +50,15 @@ const initialiseServer = async () => {
   });
   const upload = multer({ imageStorage });
 
+  // Declare other endpoint routes
   const subjectsRoutes = require("./routes/subjects");
   const searchRoutes = require("./routes/search");
-  app.use("/api/v1/subjects", subjectsRoutes(upload));
+  const imageRoutes = require("./routes/images");
+  app.use("/api/v1/image", imageRoutes(gfs, upload));
+  app.use("/api/v1/subjects", subjectsRoutes);
   app.use("/api/v1/search", searchRoutes);
 
+  // Initialise server listener
   app.listen(port, (error) => {
     console.log(error || `Server ready on port ${port}`);
   });

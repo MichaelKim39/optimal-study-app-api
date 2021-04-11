@@ -24,28 +24,26 @@ const { verifyJWT } = require("../../controllers/auth");
 
 const router = express.Router();
 
-module.exports = (upload) => {
-  // SUBJECTS
-  router.get("", verifyJWT, getSubjects(upload));
-  router.get("/:subjectId", getSubject);
-  router.post("", verifyJWT, addSubject);
-  router.patch("/:subjectId", verifyJWT, editSubject);
-  router.delete("/:subjectId", verifyJWT, deleteSubject);
+// SUBJECTS
+router.get("", verifyJWT, getSubjects);
+router.get("/:subjectId", getSubject);
+router.post("", verifyJWT, addSubject);
+router.patch("/:subjectId", verifyJWT, editSubject);
+router.delete("/:subjectId", verifyJWT, deleteSubject);
 
-  // TOPICS
-  router.get("/:subjectId/topics", getTopics);
-  router.get("/:subjectId/:topicId", getTopic);
-  router.post("/:subjectId/topics", addTopic);
-  router.patch("/:subjectId/:topicId", editTopic);
-  router.delete("/:subjectId/:topicId", deleteTopic);
+// TOPICS
+router.get("/:subjectId/topics", getTopics);
+router.get("/:subjectId/:topicId", getTopic);
+router.post("/:subjectId/topics", addTopic);
+router.patch("/:subjectId/:topicId", editTopic);
+router.delete("/:subjectId/:topicId", deleteTopic);
 
-  // NOTES
-  router.patch("/:subjectId/:topicId/notes", editNotes);
+// NOTES
+router.patch("/:subjectId/:topicId/notes", editNotes);
 
-  // CARDS
-  router.post("/:subjectId/:topicId/cards", addCard);
-  router.patch("/:subjectId/:topicId/cards", editCard);
-  router.put("/:subjectId/:topicId/cards", getOrDeleteCard);
+// CARDS
+router.post("/:subjectId/:topicId/cards", addCard);
+router.patch("/:subjectId/:topicId/cards", editCard);
+router.put("/:subjectId/:topicId/cards", getOrDeleteCard);
 
-  return router;
-};
+module.exports = router;
