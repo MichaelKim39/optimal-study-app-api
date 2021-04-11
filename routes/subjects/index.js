@@ -17,6 +17,7 @@ const {
   editNotes,
   addCard,
   editCard,
+  updateCardBucket,
   getOrDeleteCard,
 } = require("../../controllers/topics");
 
@@ -45,5 +46,8 @@ router.patch("/:subjectId/:topicId/notes", editNotes);
 router.post("/:subjectId/:topicId/cards", addCard);
 router.patch("/:subjectId/:topicId/cards", editCard);
 router.put("/:subjectId/:topicId/cards", getOrDeleteCard);
+
+// CARD
+router.patch("/:subjectId/:topicId/card", updateCardBucket);
 
 module.exports = router;
