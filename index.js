@@ -18,6 +18,11 @@ const initialiseServer = async () => {
 
   app.use(bodyParser.json());
 
+  // Return HTML for base page
+  app.get("", (req, res) => {
+    res.sendFile("homepage.html", { root: __dirname });
+  });
+
   // Enable form deletion of images using method override
   app.use(methodOverride("_method"));
 
