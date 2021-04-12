@@ -7,7 +7,7 @@ const multer = require("multer");
 const Grid = require("gridfs-stream");
 const GridFsStorage = require("multer-gridfs-storage");
 
-const config = require("./config/dev");
+const config = require("./config");
 const { connectMongoose } = require("./database");
 
 const port = parseInt(process.env.PORT, 10) || 3001;
