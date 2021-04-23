@@ -273,3 +273,69 @@ exports.deleteCard = async (req, res) => {
     return res.status(422).send(error.message);
   }
 };
+
+exports.updateNextReview = async (req, res) => {
+  try {
+    const { subjectId, topicId } = req.params;
+
+    await Subject.findOneAndUpdate(
+      { _id: subjectId },
+      {
+        $set: {
+          "topics.$[topic].nextReview": Date.now() + 7 * 24 * 60 * 60 * 1000,
+          "topics.$[topic]._id": topicId,
+        },
+      },
+      {
+        arrayFilters: [{ "topic._id": topicId }],
+        new: true,
+        returnOriginal: false,
+        returnNewDocument: true,
+      }
+    );
+
+    return res.json("Update next review working");
+  } catch (error) {
+    console.log("UPDATE NEXT REVIEW FAILED WITH ERROR: ", error);
+    return res.status(422).send(error.message);
+  }
+};
+
+exports.toggleTopicActive = async (req, res) => {
+  try {
+    const {
+      body: { setActive },
+      params: { subjectId, topicId },
+    } = req;
+
+    const updateBlock = {};
+
+    if (setActive) {
+      // Moving from inactive -> active
+      updateBlock["topics.$[topic].active"] = true;
+      updateBlock["topics.$[topic].nextReview"] = Date.now();
+    } else {
+      // Moving from active -> inactive
+      updateBlock["topics.$[topic].active"] = false;
+    }
+    updateBlock["topics.$[topic]._id"] = topicId;
+
+    await Subject.findOneAndUpdate(
+      { _id: subjectId },
+      {
+        $set: updateBlock,
+      },
+      {
+        arrayFilters: [{ "topic._id": topicId }],
+        new: true,
+        returnOriginal: false,
+        returnNewDocument: true,
+      }
+    );
+
+    return res.json("Toggle topic active working");
+  } catch (error) {
+    console.log("TOGGLE TOPIC ACTIVE FAILED WITH ERROR: ", error);
+    return res.status(422).send(error.message);
+  }
+};

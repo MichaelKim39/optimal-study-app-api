@@ -18,7 +18,9 @@ const topicSchema = new Schema({
       answer: { type: String },
     },
   ],
-  creationDate: { type: Date, default: Date.now },
+  creationDate: { type: Date, default: Date.now() },
+  active: { type: Boolean, default: false },
+  nextReview: { type: Date, default: Date.now() },
   isPublic: { type: Boolean, default: true },
 });
 

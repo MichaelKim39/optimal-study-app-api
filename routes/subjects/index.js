@@ -19,6 +19,8 @@ const {
   editCard,
   updateCardBucket,
   getOrDeleteCard,
+  updateNextReview,
+  toggleTopicActive,
 } = require("../../controllers/topics");
 
 const { verifyJWT } = require("../../controllers/auth");
@@ -38,6 +40,10 @@ router.get("/:subjectId/:topicId", getTopic);
 router.post("/:subjectId/topics", addTopic);
 router.patch("/:subjectId/:topicId", editTopic);
 router.delete("/:subjectId/:topicId", deleteTopic);
+
+// SPACED REPETITION
+router.patch("/:subjectId/:topicId/review", updateNextReview);
+router.patch("/:subjectId/:topicId/active", toggleTopicActive);
 
 // NOTES
 router.patch("/:subjectId/:topicId/notes", editNotes);
