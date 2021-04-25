@@ -1,26 +1,27 @@
 const express = require("express");
 
 const {
-  getSubjects,
-  getSubject,
-  addSubject,
-  editSubject,
-  deleteSubject,
-  searchSubjects,
+	getSubjects,
+	getSubject,
+	addSubject,
+	editSubject,
+	deleteSubject,
+	searchSubjects,
+	saveSubject,
 } = require("../../controllers/subjects");
 const {
-  addTopic,
-  getTopics,
-  getTopic,
-  editTopic,
-  deleteTopic,
-  editNotes,
-  addCard,
-  editCard,
-  updateCardBucket,
-  getOrDeleteCard,
-  updateNextReview,
-  toggleTopicActive,
+	addTopic,
+	getTopics,
+	getTopic,
+	editTopic,
+	deleteTopic,
+	editNotes,
+	addCard,
+	editCard,
+	updateCardBucket,
+	getOrDeleteCard,
+	updateNextReview,
+	toggleTopicActive,
 } = require("../../controllers/topics");
 
 const { verifyJWT } = require("../../controllers/auth");
@@ -33,6 +34,7 @@ router.get("/:subjectId", getSubject);
 router.post("", verifyJWT, addSubject);
 router.patch("/:subjectId", verifyJWT, editSubject);
 router.delete("/:subjectId", verifyJWT, deleteSubject);
+router.post("/save", verifyJWT, saveSubject);
 
 // TOPICS
 router.get("/:subjectId/topics", getTopics);
